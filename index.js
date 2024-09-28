@@ -1,8 +1,10 @@
-import { Sqlite3TableQueryBuilder } from "@mantlebee/fake-data-only";
+import { Sqlite3TableQueryBuilder } from "@mantlebee/ts-refada";
 import { open } from "sqlite";
 import sqlite3 from "sqlite3";
 
 import { createDatabase } from "./database/index.js";
+
+const SEED = false;
 
 const toSingular = (name) => name.replace(/ies$/, "y").replace(/s$/, "");
 
@@ -43,12 +45,13 @@ const toSingular = (name) => name.replace(/ies$/, "y").replace(/s$/, "");
   let lastTableName;
   try {
     await clean();
-    for (const queryBuilder of queryBuilders) {
-      lastTableName = queryBuilder.tableName;
-      console.log("Seeding " + queryBuilder.tableName);
-      const query = queryBuilder.getInsertQuery();
-      if (query) await db.exec(query);
-    }
+    if (SEED)
+      for (const queryBuilder of queryBuilders) {
+        lastTableName = queryBuilder.tableName;
+        console.log("Seeding " + queryBuilder.tableName);
+        const query = queryBuilder.getInsertQuery();
+        if (query) await db.exec(query);
+      }
     console.log("DONE!");
   } catch (error) {
     console.log("ERROR! Cleaning all tables");

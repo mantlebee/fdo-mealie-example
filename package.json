@@ -10,9 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@mantlebee/fake-data-only": "file:../../Users/mantl/Repos/fake-data-only",
-    "@mantlebee/ts-core": "^0.23.0",
-    "@mantlebee/ts-random": "^0.4.1",
+    "@mantlebee/ts-core": "^0.24.1",
+    "@mantlebee/ts-random": "^0.5.1",
+    "@mantlebee/ts-refada": "^1.0.0",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
   }

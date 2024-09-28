@@ -5,7 +5,7 @@ import {
   IdColumn,
   SlugColumn,
   TitleColumn,
-} from "@mantlebee/fake-data-only";
+} from "@mantlebee/ts-refada";
 
 export const getColumnsBase = (useNumericId = false) => [
   useNumericId ? new IdColumn("id") : new GuidColumn("id"),

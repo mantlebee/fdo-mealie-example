@@ -1,4 +1,4 @@
-import { Database } from "@mantlebee/fake-data-only";
+import { Database } from "@mantlebee/ts-refada";
 
 import {
   categoriesKey,

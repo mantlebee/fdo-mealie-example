@@ -1,4 +1,4 @@
-import { createTableKey, Sqlite3Table } from "@mantlebee/fake-data-only";
+import { createTableKey, Sqlite3Table } from "@mantlebee/ts-refada";
 
 import { getColumnsCommon } from "./_common.js";
 

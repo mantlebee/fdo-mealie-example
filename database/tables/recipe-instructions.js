@@ -5,7 +5,7 @@ import {
   NumberColumn,
   Sqlite3Table,
   TitleColumn,
-} from "@mantlebee/fake-data-only";
+} from "@mantlebee/ts-refada";
 
 import { getColumnsBase } from "./_common.js";
 import { recipesKey } from "./recipes.js";

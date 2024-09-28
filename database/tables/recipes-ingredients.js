@@ -6,7 +6,7 @@ import {
   NumberColumn,
   Sqlite3TableDetail,
   TitleColumn,
-} from "@mantlebee/fake-data-only";
+} from "@mantlebee/ts-refada";
 import { createSlug } from "@mantlebee/ts-core";
 import { extractRandomItem } from "@mantlebee/ts-random";
 

@@ -10,7 +10,7 @@ import {
   NumberColumn,
   SlugColumn,
   Sqlite3Table,
-} from "@mantlebee/fake-data-only";
+} from "@mantlebee/ts-refada";
 
 import { getColumnsCommon } from "./_common.js";
 
