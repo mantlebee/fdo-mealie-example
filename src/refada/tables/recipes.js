@@ -40,10 +40,15 @@ export const createRecipesTable = async (db, groupId) =>
       a.slug.replace(/\-/g, " ")
     ),
     new LookupRelationColumn("user_id", 0, usersKey, "id"),
+    new NumberColumn("perform_time", { max: 240 }),
     new NumberColumn("prep_time", { max: 60 }),
-    new NumberColumn("cook_time", { max: 240 }),
-    new CustomColumn("total_time", (a) => a.prep_time + a.cook_time),
     new NumberColumn("rating", { max: 5, nullable: true }),
+    new LoremIpsumColumn("recipe_yield", {
+      paragraphs: { max: 3, min: 1 },
+      sentencesPerParagraph: { max: 10, min: 3 },
+      wordsPerSentence: { max: 20, min: 5 },
+    }),
+    new CustomColumn("total_time", (a) => a.perform_time + a.prep_time),
     // Following columns are not defined in the table, but used for relating cookbooks with categories, tags, and tools
     new MultiselectionRelationColumn("categories", categoriesKey, "id"),
     new MultiselectionRelationColumn("tags", tagsKey, "id"),

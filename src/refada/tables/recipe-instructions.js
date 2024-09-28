@@ -1,9 +1,9 @@
 import {
+  ConstantColumn,
   createTableKey,
-  LookupRelationColumn,
   LoremIpsumColumn,
   NumberColumn,
-  Sqlite3Table,
+  Sqlite3TableDetail,
   TitleColumn,
 } from "@mantlebee/ts-refada";
 
@@ -12,11 +12,12 @@ import { recipesKey } from "./recipes.js";
 
 export const recipeInstructionsKey = createTableKey("recipe_instructions");
 
-export const createRecipeInstructionsTable = async (db, groupId) =>
-  new Sqlite3Table(recipeInstructionsKey, [
-    ...getColumnsBase(true),
+export const createRecipeInstructionsTable = async (db, groupId) => {
+  const columnsBase = getColumnsBase(true);
+  return new Sqlite3TableDetail(recipeInstructionsKey, recipesKey, (a) => [
+    ...columnsBase,
     new NumberColumn("position", { max: 0 }),
-    new LookupRelationColumn("recipe_id", "", recipesKey, "id"),
+    new ConstantColumn("recipe_id", a.id),
     new LoremIpsumColumn("text", {
       paragraphs: { max: 2, min: 1 },
       sentencesPerParagraph: { max: 5, min: 1 },
@@ -24,3 +25,4 @@ export const createRecipeInstructionsTable = async (db, groupId) =>
     }),
     new TitleColumn("title", { maxLength: { max: 20, min: 5 } }),
   ]);
+};

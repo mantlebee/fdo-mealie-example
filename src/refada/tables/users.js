@@ -1,5 +1,6 @@
 import {
   BooleanColumn,
+  ConstantColumn,
   createTableKey,
   CustomColumn,
   DateColumn,
@@ -20,8 +21,11 @@ export const createUsersTable = async (db, groupId) =>
   new Sqlite3Table(usersKey, [
     ...getColumnsCommon(groupId, true),
     new CustomColumn("auth_method", () => "MEALIE"),
-    new DateColumn("locked_at", { nullable: 20 }),
-    new NumberColumn("login_attemps", { nullable: true, max: 5 }),
+    new NumberColumn("login_attemps", { max: 5 }),
+    new DateColumn("locked_at", (a) => ({
+      nullable: a.login_attempts === 5 ? 100 : false,
+    })),
+    new ConstantColumn("cache_key", "1234"),
     new BooleanColumn("can_organize"),
     new BooleanColumn("can_invite"),
     new BooleanColumn("can_manage"),
