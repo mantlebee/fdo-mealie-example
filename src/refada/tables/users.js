@@ -16,9 +16,9 @@ import { getColumnsCommon } from "./_common.js";
 
 export const usersKey = createTableKey("users");
 
-export const createUsersTable = async (db) =>
+export const createUsersTable = async (db, groupId) =>
   new Sqlite3Table(usersKey, [
-    ...getColumnsCommon(true),
+    ...getColumnsCommon(groupId, true),
     new CustomColumn("auth_method", () => "MEALIE"),
     new DateColumn("locked_at", { nullable: 20 }),
     new NumberColumn("login_attemps", { nullable: true, max: 5 }),

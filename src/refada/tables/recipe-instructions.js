@@ -12,7 +12,7 @@ import { recipesKey } from "./recipes.js";
 
 export const recipeInstructionsKey = createTableKey("recipe_instructions");
 
-export const createRecipeInstructionsTable = async (db) =>
+export const createRecipeInstructionsTable = async (db, groupId) =>
   new Sqlite3Table(recipeInstructionsKey, [
     ...getColumnsBase(true),
     new NumberColumn("position", { max: 0 }),

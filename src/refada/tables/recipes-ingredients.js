@@ -15,7 +15,7 @@ import { recipesKey } from "./recipes.js";
 
 export const recipesIngredientsKey = createTableKey("recipes_ingredients");
 
-export const createRecipesIngredientsTable = async (db) => {
+export const createRecipesIngredientsTable = async (db, groupId) => {
   const foodIds = (await db.all("SELECT id from ingredient_foods")).map(
     (a) => a.id
   );

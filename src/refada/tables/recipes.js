@@ -22,9 +22,9 @@ import { toolsKey } from "./tools.js";
 
 export const recipesKey = createTableKey("recipes");
 
-export const createRecipesTable = async (db) =>
+export const createRecipesTable = async (db, groupId) =>
   new Sqlite3Table(recipesKey, [
-    ...getColumnsCommon(),
+    ...getColumnsCommon(groupId),
     new CustomColumn(
       "date_added",
       (a) => a.created_at.toISOString().split("T")[0]

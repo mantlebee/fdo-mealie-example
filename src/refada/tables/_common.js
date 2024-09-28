@@ -12,10 +12,10 @@ export const getColumnsBase = (useNumericId = false) => [
   new DateColumn("created_at"),
 ];
 
-export const getColumnsCommon = (excludeNameColumn = false) => {
+export const getColumnsCommon = (groupId, excludeNameColumn = false) => {
   const commonColumns = [
     ...getColumnsBase(),
-    new ConstantColumn("group_id", "f40cacad9e5849ff9079bf62fc04b96f"),
+    new ConstantColumn("group_id", groupId),
   ];
   if (!excludeNameColumn)
     commonColumns.push(

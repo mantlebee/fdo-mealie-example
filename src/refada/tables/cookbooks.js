@@ -14,9 +14,9 @@ import { toolsKey } from "./tools.js";
 
 export const cookbooksKey = createTableKey("cookbooks");
 
-export const createCookbooksTable = async (db) =>
+export const createCookbooksTable = async (db, groupId) =>
   new Sqlite3Table(cookbooksKey, [
-    ...getColumnsCommon(),
+    ...getColumnsCommon(groupId),
     new LoremIpsumColumn("description", {
       paragraphs: { max: 3, min: 1 },
       sentencesPerParagraph: { max: 10, min: 3 },
