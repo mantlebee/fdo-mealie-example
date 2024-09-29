@@ -2,6 +2,7 @@ import {
   ConstantColumn,
   createTableKey,
   CustomColumn,
+  IdColumn,
   LoremIpsumColumn,
   NumberColumn,
   Sqlite3TableDetail,
@@ -34,7 +35,7 @@ export const createRecipesIngredientsTable = async (db, groupId) => {
     new CustomColumn("note_normalized", (a) =>
       createSlug(a.note).replace(/\-/g, " ")
     ),
-    new ConstantColumn("position", 0),
+    new IdColumn("position"),
     new NumberColumn("quantity", { max: 50, min: 1 }),
     new ConstantColumn("recipe_id", a.id),
     new TitleColumn("title", { maxLength: { max: 10, min: 5 } }),
