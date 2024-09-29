@@ -14,3 +14,4 @@ export * from "./shopping_lists.js";
 export * from "./tags.js";
 export * from "./tools.js";
 export * from "./users.js";
+export * from "./users_to_recipes.js";

@@ -8,6 +8,7 @@ import {
   shoppingListsKey,
   tagsKey,
   toolsKey,
+  usersToRecipesKey,
 } from "./refada/tables/index.js";
 
 /**
@@ -27,4 +28,5 @@ export const DatabaseSeedingCounts = {
   [shoppingListsKey]: 2,
   [tagsKey]: 20,
   [toolsKey]: 10,
+  [usersToRecipesKey]: { max: 5, min: 1 },
 };

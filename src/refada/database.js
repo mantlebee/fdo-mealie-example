@@ -18,6 +18,7 @@ import {
   createTagsTable,
   createToolsTable,
   createUsersTable,
+  createUsersToRecipesTable,
   recipeSettingsKey,
   shoppingListMultiPurposeLabelsKey,
 } from "./tables/index.js";
@@ -40,6 +41,7 @@ export const createDatabase = async (db) => {
     await createTagsTable(db),
     await createToolsTable(db),
     await createUsersTable(db),
+    await createUsersToRecipesTable(db),
   ]).seed({
     ...DatabaseSeedingCounts,
     [recipeSettingsKey]: 1, // DON'T CHANGE! Each recipe must have one, and one only, settings row
