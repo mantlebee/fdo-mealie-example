@@ -16,18 +16,14 @@ First of all, we need a MEALIE project up and running.
 
 1. Clone this repository
 2. Run MEALIE using Docker Compose: `docker-compose.exe -f docker.compose.yml up -d`
-3. Navigate to [http://localhost:9925](http://localhost:9925) and follow the MEALIE configuration wizard. Pay attention to
-   - remember the **username** choosen. It will necessary to configure the REFADA integration.
-   - keep flagged the options **Use Seed Data**.
+3. Navigate to [http://localhost:9925](http://localhost:9925) and follow the MEALIE configuration wizard. Pay attention to keep flagged the options **Use Seed Data**.
 
 At the moment we only started a new MEALIE project. As you can see, no data is present. Let's generate some data!
 
 Now we install REFADA dependencies and run the seed command.
 
 4. Install Node dependencies using the command `npm i`
-5. Configure REFADA editing the file `./src/config.js`:
-   - Change the **username** using the one choosen at point 3
-   - Defining the amount of rows you want to generate in the `DatabaseSeedingCounts` map.
+5. Configure REFADA editing the file `./src/config.js` defining the amount of rows you want to generate in the `DatabaseSeedingCounts` map.
 6. Run seeding using the command `node src/seed.js`.
    - The seeding process always clears data before seeding.
    - In case of errors seeded tables are cleared also.
