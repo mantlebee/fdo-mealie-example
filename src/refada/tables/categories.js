@@ -4,5 +4,5 @@ import { getColumnsCommon } from "./_common.js";
 
 export const categoriesKey = createTableKey("categories");
 
-export const createCategoriesTable = async (db, groupId) =>
-  new Sqlite3Table(categoriesKey, getColumnsCommon(groupId));
+export const createCategoriesTable = async (db) =>
+  new Sqlite3Table(categoriesKey, getColumnsCommon());

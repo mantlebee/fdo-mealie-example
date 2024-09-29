@@ -18,7 +18,7 @@ import { shoppingListsKey } from "./shopping_lists.js";
 
 export const shoppingListItemsKey = createTableKey("shopping_list_items");
 
-export const createShoppingListItemsTable = async (db, groupId) => {
+export const createShoppingListItemsTable = async (db) => {
   const columnsBase = getColumnsBase();
   return new Sqlite3DetailTable(
     shoppingListItemsKey,

@@ -1,5 +1,6 @@
 export * from "./categories.js";
 export * from "./cookbooks.js";
+export * from "./groups.js";
 export * from "./ingredient_foods.js";
 export * from "./ingredient_units.js";
 export * from "./multi_purpose_labels.js";

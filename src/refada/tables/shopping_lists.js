@@ -9,8 +9,8 @@ import { usersKey } from "./users.js";
 
 export const shoppingListsKey = createTableKey("shopping_lists");
 
-export const createShoppingListsTable = async (db, groupId) =>
+export const createShoppingListsTable = async (db) =>
   new Sqlite3Table(shoppingListsKey, [
-    ...getColumnsCommon(groupId).filter((a) => a.name !== "slug"),
+    ...getColumnsCommon(true),
     new LookupRelationColumn("user_id", null, usersKey, "id"),
   ]);

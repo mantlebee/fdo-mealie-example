@@ -7,19 +7,17 @@ import {
 } from "@mantlebee/ts-refada";
 
 import { getColumnsBase } from "./_common.js";
+import { multiPurposeLabelsKey } from "./multi_purpose_labels.js";
 import { shoppingListsKey } from "./shopping_lists.js";
 
 export const shoppingListMultiPurposeLabelsKey = createTableKey(
   "shopping_lists_multi_purpose_labels"
 );
 
-export const createshoppingListMultiPurposeLabelsTable = async (
-  db,
-  groupId
-) => {
-  const labelIds = (await db.all("SELECT id from multi_purpose_labels")).map(
-    (a) => a.id
-  );
+export const createshoppingListMultiPurposeLabelsTable = async (db) => {
+  const labelIds = (
+    await db.all(`SELECT id from ${multiPurposeLabelsKey.description}`)
+  ).map((a) => a.id);
   const shoppingListsMap = {};
   const columnsBase = getColumnsBase();
   return new Sqlite3DetailTable(

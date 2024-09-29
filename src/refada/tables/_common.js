@@ -3,26 +3,27 @@ import {
   DateColumn,
   GuidColumn,
   IdColumn,
+  LookupRelationColumn,
   SlugColumn,
   Sqlite3ConstantTable,
   TitleColumn,
 } from "@mantlebee/ts-refada";
+
+import { groupsKey } from "./groups.js";
 
 export const getColumnsBase = (useNumericId = false) => [
   useNumericId ? new IdColumn("id") : new GuidColumn("id"),
   new DateColumn("created_at"),
 ];
 
-export const getColumnsCommon = (groupId, excludeNameColumn = false) => {
+export const getColumnsCommon = (excludeSlugColumn = false) => {
   const commonColumns = [
     ...getColumnsBase(),
-    new ConstantColumn("group_id", groupId),
+    new LookupRelationColumn("group_id", null, groupsKey, "id"),
+    new TitleColumn("name", { maxLength: { max: 50, min: 10 } }),
   ];
-  if (!excludeNameColumn)
-    commonColumns.push(
-      new TitleColumn("name", { maxLength: { max: 50, min: 10 } }),
-      new SlugColumn("slug", { sourceField: "name" })
-    );
+  if (!excludeSlugColumn)
+    commonColumns.push(new SlugColumn("slug", { sourceField: "name" }));
   return commonColumns;
 };
 
