@@ -1,4 +1,4 @@
-import { Database } from "@mantlebee/ts-refada";
+import { Sqlite3Database } from "@mantlebee/ts-refada";
 
 import { DatabaseSeedingCounts } from "../config.js";
 import {
@@ -23,7 +23,7 @@ import {
 } from "./tables/index.js";
 
 export const createDatabase = async (db) => {
-  return new Database([
+  return new Sqlite3Database([
     await createCategoriesTable(db),
     await createCookbooksTable(db),
     await createGroupsTable(db),

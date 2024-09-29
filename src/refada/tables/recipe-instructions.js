@@ -1,9 +1,9 @@
 import {
   ConstantColumn,
   createTableKey,
+  DetailTable,
   IdColumn,
   LoremIpsumColumn,
-  Sqlite3DetailTable,
   TitleColumn,
 } from "@mantlebee/ts-refada";
 
@@ -14,7 +14,7 @@ export const recipeInstructionsKey = createTableKey("recipe_instructions");
 
 export const createRecipeInstructionsTable = async (db) => {
   const columnsBase = getColumnsBase(true);
-  return new Sqlite3DetailTable(recipeInstructionsKey, recipesKey, (a) => [
+  return new DetailTable(recipeInstructionsKey, recipesKey, (a) => [
     ...columnsBase,
     new IdColumn("position"),
     new ConstantColumn("recipe_id", a.id),

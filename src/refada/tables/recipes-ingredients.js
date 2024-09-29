@@ -2,11 +2,11 @@ import {
   ConstantColumn,
   createTableKey,
   CustomColumn,
+  DetailTable,
   IdColumn,
   LookupRelationColumn,
   LoremIpsumColumn,
   NumberColumn,
-  Sqlite3DetailTable,
   TitleColumn,
 } from "@mantlebee/ts-refada";
 import { createSlug } from "@mantlebee/ts-core";
@@ -20,7 +20,7 @@ export const recipesIngredientsKey = createTableKey("recipes_ingredients");
 
 export const createRecipesIngredientsTable = async (db) => {
   const columnsBase = getColumnsBase(true);
-  return new Sqlite3DetailTable(recipesIngredientsKey, recipesKey, (a) => [
+  return new DetailTable(recipesIngredientsKey, recipesKey, (a) => [
     ...columnsBase,
     new LookupRelationColumn("food_id", null, ingredientFoodsKey, "id"),
     new LoremIpsumColumn("note", {

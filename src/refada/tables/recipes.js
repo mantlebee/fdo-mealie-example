@@ -11,7 +11,7 @@ import {
   LoremIpsumColumn,
   MultiselectionRelationColumn,
   NumberColumn,
-  Sqlite3Table,
+  Table,
 } from "@mantlebee/ts-refada";
 
 import { getColumnsCommon } from "./_common.js";
@@ -23,7 +23,7 @@ import { toolsKey } from "./tools.js";
 export const recipesKey = createTableKey("recipes");
 
 export const createRecipesTable = async (db) =>
-  new Sqlite3Table(recipesKey, [
+  new Table(recipesKey, [
     ...getColumnsCommon(),
     new CustomColumn(
       "date_added",

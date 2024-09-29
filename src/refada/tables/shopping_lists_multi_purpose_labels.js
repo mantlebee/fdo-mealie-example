@@ -2,8 +2,8 @@ import {
   ConstantColumn,
   createTableKey,
   CustomColumn,
+  DetailTable,
   IdColumn,
-  Sqlite3DetailTable,
 } from "@mantlebee/ts-refada";
 
 import { getColumnsBase } from "./_common.js";
@@ -20,7 +20,7 @@ export const createshoppingListMultiPurposeLabelsTable = async (db) => {
   ).map((a) => a.id);
   const shoppingListsMap = {};
   const columnsBase = getColumnsBase();
-  return new Sqlite3DetailTable(
+  return new DetailTable(
     shoppingListMultiPurposeLabelsKey,
     shoppingListsKey,
     (shoppingList) => [

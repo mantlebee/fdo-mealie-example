@@ -2,12 +2,11 @@ import {
   BooleanColumn,
   ConstantColumn,
   createTableKey,
-  CustomColumn,
+  DetailTable,
   IdColumn,
   LookupRelationColumn,
   LoremIpsumColumn,
   NumberColumn,
-  Sqlite3DetailTable,
 } from "@mantlebee/ts-refada";
 
 import { getColumnsBase } from "./_common.js";
@@ -20,7 +19,7 @@ export const shoppingListItemsKey = createTableKey("shopping_list_items");
 
 export const createShoppingListItemsTable = async (db) => {
   const columnsBase = getColumnsBase();
-  return new Sqlite3DetailTable(
+  return new DetailTable(
     shoppingListItemsKey,
     shoppingListsKey,
     (shoppingList) => [

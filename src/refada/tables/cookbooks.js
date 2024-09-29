@@ -4,7 +4,7 @@ import {
   IdColumn,
   LoremIpsumColumn,
   MultiselectionRelationColumn,
-  Sqlite3Table,
+  Table,
 } from "@mantlebee/ts-refada";
 
 import { getColumnsCommon } from "./_common.js";
@@ -15,7 +15,7 @@ import { toolsKey } from "./tools.js";
 export const cookbooksKey = createTableKey("cookbooks");
 
 export const createCookbooksTable = async (db) =>
-  new Sqlite3Table(cookbooksKey, [
+  new Table(cookbooksKey, [
     ...getColumnsCommon(),
     new LoremIpsumColumn("description", {
       paragraphs: { max: 3, min: 1 },
