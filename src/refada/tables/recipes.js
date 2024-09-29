@@ -39,7 +39,7 @@ export const createRecipesTable = async (db, groupId) =>
     new CustomColumn("description_normalized", (a) =>
       a.slug.replace(/\-/g, " ")
     ),
-    new LookupRelationColumn("user_id", 0, usersKey, "id"),
+    new LookupRelationColumn("user_id", null, usersKey, "id"),
     new NumberColumn("perform_time", { max: 240 }),
     new NumberColumn("prep_time", { max: 60 }),
     new NumberColumn("rating", { max: 5, nullable: true }),

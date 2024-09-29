@@ -13,7 +13,7 @@
   "dependencies": {
     "@mantlebee/ts-core": "^0.24.1",
     "@mantlebee/ts-random": "^0.5.1",
-    "@mantlebee/ts-refada": "^1.0.0",
+    "@mantlebee/ts-refada": "^1.0.1",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
   }

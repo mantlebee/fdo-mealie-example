@@ -4,6 +4,7 @@ import {
   GuidColumn,
   IdColumn,
   SlugColumn,
+  Sqlite3ConstantTable,
   TitleColumn,
 } from "@mantlebee/ts-refada";
 
@@ -23,4 +24,9 @@ export const getColumnsCommon = (groupId, excludeNameColumn = false) => {
       new SlugColumn("slug", { sourceField: "name" })
     );
   return commonColumns;
+};
+
+export const getConstantTable = async (tableKey, db) => {
+  const rows = await db.all(`SELECT * from ${tableKey.description}`);
+  return new Sqlite3ConstantTable(tableKey, rows);
 };

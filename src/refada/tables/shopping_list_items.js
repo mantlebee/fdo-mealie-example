@@ -4,37 +4,32 @@ import {
   createTableKey,
   CustomColumn,
   IdColumn,
+  LookupRelationColumn,
   LoremIpsumColumn,
   NumberColumn,
-  Sqlite3TableDetail,
+  Sqlite3DetailTable,
 } from "@mantlebee/ts-refada";
 
 import { getColumnsBase } from "./_common.js";
+import { ingredientFoodsKey } from "./ingredient_foods.js";
+import { ingredientUnitsKey } from "./ingredient_units.js";
+import { multiPurposeLabelsKey } from "./multi_purpose_labels.js";
 import { shoppingListsKey } from "./shopping_lists.js";
-import { extractRandomItem } from "@mantlebee/ts-random";
 
 export const shoppingListItemsKey = createTableKey("shopping_list_items");
 
 export const createShoppingListItemsTable = async (db, groupId) => {
-  const foodIds = (await db.all("SELECT id from ingredient_foods")).map(
-    (a) => a.id
-  );
-  const labelIds = (await db.all("SELECT id from multi_purpose_labels")).map(
-    (a) => a.id
-  );
-  const unitIds = (await db.all("SELECT id from ingredient_units")).map(
-    (a) => a.id
-  );
   const columnsBase = getColumnsBase();
-  return new Sqlite3TableDetail(
+  return new Sqlite3DetailTable(
     shoppingListItemsKey,
     shoppingListsKey,
     (shoppingList) => [
       ...columnsBase,
       new BooleanColumn("checked"),
+      new LookupRelationColumn("food_id", null, ingredientFoodsKey, "id"),
       new BooleanColumn("is_food"),
       new BooleanColumn("is_ingredient"),
-      new CustomColumn("label_id", () => extractRandomItem(labelIds)),
+      new LookupRelationColumn("label_id", null, multiPurposeLabelsKey, "id"),
       new LoremIpsumColumn("note", {
         paragraphs: 1,
         sentencesPerParagraph: { max: 3, min: 1 },
@@ -43,13 +38,7 @@ export const createShoppingListItemsTable = async (db, groupId) => {
       new IdColumn("position"),
       new NumberColumn("quantity", { max: 20, min: 1 }),
       new ConstantColumn("shopping_list_id", shoppingList.id),
-      // Depend on is_food
-      new CustomColumn("food_id", (a) =>
-        a.is_food ? extractRandomItem(foodIds) : null
-      ),
-      new CustomColumn("unit_id", (a) =>
-        a.is_food ? extractRandomItem(unitIds) : null
-      ),
+      new LookupRelationColumn("unit_id", null, ingredientUnitsKey, "id"),
     ]
   );
 };

@@ -4,6 +4,9 @@ import { DatabaseSeedingCounts } from "../config.js";
 import {
   createCategoriesTable,
   createCookbooksTable,
+  createIngredientFoodsTable,
+  createIngredientUnitsTable,
+  createMultiPurposeLabelsTable,
   createRecipeInstructionsTable,
   createRecipeSettingsTable,
   createRecipesIngredientsTable,
@@ -14,6 +17,8 @@ import {
   createTagsTable,
   createToolsTable,
   createUsersTable,
+  recipeSettingsKey,
+  shoppingListMultiPurposeLabelsKey,
 } from "./tables/index.js";
 
 export const createDatabase = async (db) => {
@@ -23,6 +28,9 @@ export const createDatabase = async (db) => {
   return new Database([
     await createCategoriesTable(db, groupId),
     await createCookbooksTable(db, groupId),
+    await createIngredientFoodsTable(db, groupId),
+    await createIngredientUnitsTable(db, groupId),
+    await createMultiPurposeLabelsTable(db, groupId),
     await createRecipeInstructionsTable(db, groupId),
     await createRecipeSettingsTable(db, groupId),
     await createRecipesIngredientsTable(db, groupId),
@@ -33,5 +41,9 @@ export const createDatabase = async (db) => {
     await createTagsTable(db, groupId),
     await createToolsTable(db, groupId),
     await createUsersTable(db, groupId),
-  ]).seed(DatabaseSeedingCounts);
+  ]).seed({
+    ...DatabaseSeedingCounts,
+    [recipeSettingsKey]: 1, // DON'T CHANGE! Each recipe must have one, and one only, settings row
+    [shoppingListMultiPurposeLabelsKey]: 21, // DON'T CHANGE! Exact number of labels.
+  });
 };
